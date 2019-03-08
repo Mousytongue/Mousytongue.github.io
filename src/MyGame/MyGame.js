@@ -47,7 +47,7 @@ MyGame.prototype.initialize = function () {
     this.mCamera = new Camera(
         vec2.fromValues(50, 40), // position of the camera
         200,                     // width of camera
-        [0, 0, 1600, 800]         // viewport (orgX, orgY, width, height)
+        [0, 0, 1400, 600]         // viewport (orgX, orgY, width, height)
     );
     this.mCamera.setBackgroundColor([0.8, 0.8, 0.8, 1]);
             // sets the background to gray
