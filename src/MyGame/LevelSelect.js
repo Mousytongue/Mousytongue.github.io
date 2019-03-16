@@ -12,7 +12,7 @@
 "use strict";  // Operate in Strict mode such that variables must be declared before used!
 function LevelSelect() {
     this.kUIButton = "assets/UI/button.png";
-    
+    this.kBG = "assets/DyeAssets/bg.png";
     // The camera to view the scene
     this.mCamera = null;
     this.World1Button = null;
@@ -24,10 +24,12 @@ gEngine.Core.inheritPrototype(LevelSelect, Scene);
 
 LevelSelect.prototype.loadScene = function () {
     gEngine.Textures.loadTexture(this.kUIButton);
+    gEngine.Textures.loadTexture(this.kBG);
 };
 
 LevelSelect.prototype.unloadScene = function () {
     gEngine.Textures.unloadTexture(this.kUIButton);
+    gEngine.Textures.unloadTexture(this.kBG);
     if(this.LevelSelect==="Level1"){
         gEngine.Core.startScene(new Level1());
     }
@@ -53,6 +55,9 @@ LevelSelect.prototype.initialize = function () {
     this.World1Button = new UIButton(this.kUIButton,this.World1Select,this,[650,450],[600,100],"World One",8,[1,1,1,1],[0,0,0,1]);
     this.World2Button = new UIButton(this.kUIButton,this.World2Select,this,[650,350],[750,100],"World Two",8,[1,1,1,1],[0,0,0,1]);
     this.GoBackButton = new UIButton(this.kUIButton,this.GoBackSelect,this,[650,250],[750,100],"Go Back",8,[1,1,1,1],[0,0,0,1]);
+    this.mBg = new TextureRenderable(this.kBG);
+    this.mBg.getXform().setSize(200,180);
+    this.mBg.getXform().setPosition(50,20);
 };
 
 // This is the draw function, make sure to setup proper drawing environment, and more
@@ -66,7 +71,7 @@ LevelSelect.prototype.draw = function () {
     this.World1Button.draw(this.mCamera);
     this.World2Button.draw(this.mCamera);
     this.GoBackButton.draw(this.mCamera);
-    //this.UIText.draw(this.mCamera);
+    this.mBg.draw(this.mCamera);
 };
 
 LevelSelect.prototype.update = function () {
